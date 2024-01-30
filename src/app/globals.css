@@ -2,3 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 6px;
+    margin-top: -1vh; /* hide the scrollbar 1vh above the top */
+    opacity: 0; /* hide the scrollbar */
+    transition: opacity 0.3s ease-in-out; /* add transition effect */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+body:hover ::-webkit-scrollbar {
+    margin-top: 0; /* reveal the scrollbar */
+    opacity: 1; /* reveal the scrollbar */
+}

@@ -14,8 +14,8 @@ const sidebar = {
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
       type: "spring",
-      stiffness: 20,
-      restDelta: 2,
+      stiffness: 100,
+      restDelta: 6,
     },
   }),
   closed: {
@@ -47,7 +47,7 @@ function HeaderMobile() {
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${
+      className={`fixed inset-0 z-50 w-full ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}
@@ -101,12 +101,13 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
     onClick={toggle}
     className="pointer-events-auto absolute right-4 top-[14px] z-30"
   >
-    <svg width="23" height="23" viewBox="0 0 23 23">
+    <svg width="35" height="35" viewBox="0 0 23 23">
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5' },
           open: { d: 'M 3 16.5 L 17 2.5' },
         }}
+        stroke="black"
       />
       <Path
         d="M 2 9.423 L 20 9.423"
@@ -115,12 +116,14 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
           open: { opacity: 0 },
         }}
         transition={{ duration: 0.1 }}
+        stroke="black"
       />
       <Path
         variants={{
           closed: { d: 'M 2 16.346 L 20 16.346' },
           open: { d: 'M 3 2.5 L 17 16.346' },
         }}
+        stroke="black"
       />
     </svg>
   </button>

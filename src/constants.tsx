@@ -13,13 +13,13 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         path: "/profolio",
     },
     {
-        title: "Projects",
+        title: "Posts",
         icon: <Icon icon="carbon:app-switcher" width="24" height="24"/>,
-        path: "/projects",
+        path: "/posts",
         submenu: true,
         subMenuItems: [
-            { title: "All", path: "/projects" },
-            { title: "Web Design", path: "/projects/web-design" },
+            { title: "晶片戰爭", path: "/posts/chip-war" },
+            { title: "Web Design", path: "/posts/web-design" },
         ]
     },
     {
