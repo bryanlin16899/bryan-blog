@@ -3,27 +3,18 @@
 @tailwind utilities;
 
 /* Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 6px;
-    margin-top: -1vh; /* hide the scrollbar 1vh above the top */
-    opacity: 0; /* hide the scrollbar */
-    transition: opacity 0.3s ease-in-out; /* add transition effect */
+body::-webkit-scrollbar {
+    display: none;
 }
 
-::-webkit-scrollbar-track {
-    background-color: transparent;
+@keyframes bouncing {
+    0% {bottom: 0;}
+    50% {bottom: 20px;}
+    100% {bottom: 0;}
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-}
-
-body:hover ::-webkit-scrollbar {
-    margin-top: 0; /* reveal the scrollbar */
-    opacity: 1; /* reveal the scrollbar */
+.arrow {
+    animation: bouncing 1.2s infinite ease-in-out;
+    margin-left: -45px;
+    position: absolute;
 }

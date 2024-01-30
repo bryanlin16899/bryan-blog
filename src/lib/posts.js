@@ -5,7 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 
 export async function getPostData(id) {
-    const fullPath = path.join(`/Users/bryanlin/Code/bryan-blog-profolio/public/晶片戰爭.md`);
+    const fullPath = path.join(`/Users/bryanlin/Code/bryan-blog-profolio/public/posts/chip-war.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
   
     // Use gray-matter to parse the post metadata section
@@ -23,4 +23,15 @@ export async function getPostData(id) {
       contentHtml,
       ...matterResult.data,
     };
+}
+
+export function getAllPostIds() {
+    const fileNames = fs.readdirSync('/Users/bryanlin/Code/bryan-blog-profolio/public/posts');
+    return fileNames.map(fileName => {
+      return {
+        params: {
+          id: fileName.replace(/\.md$/, ''),
+        },
+      };
+    });
 }

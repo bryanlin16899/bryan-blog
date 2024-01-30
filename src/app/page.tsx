@@ -1,7 +1,5 @@
-import { getPostData } from "@/lib/posts";
 
 export default async function Home() {
-  const postData = await getPostData()
   
   return (
     <>
@@ -20,9 +18,9 @@ export default async function Home() {
         justifyContent: 'center',
       }}
     >
-      <h1 className="text-white text-3xl">晶片戰爭</h1>
+      <h1 className="text-white text-3xl">HOME PAGE</h1>
     </div>
-    <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}/>
+    
     </>
   );
 }
