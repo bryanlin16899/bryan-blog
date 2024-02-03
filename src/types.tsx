@@ -1,5 +1,5 @@
 export type SideNavItem = {
-    title: string;
+    title?: string;
     path: string;
     icon?: JSX.Element;
     submenu?: boolean;
