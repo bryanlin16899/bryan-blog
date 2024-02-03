@@ -1,11 +1,13 @@
 import PostHeaderWrapper from "@/components/post-header-wrapper";
+import TableOfContent from "@/components/table-of-content";
 import { getPostData } from "@/lib/posts";
 import { getRandomNumber } from "@/lib/utils";
 import type { SVGProps } from 'react';
 import './style.css';
 
 async function Post({ params } : {params: {id: string}}) { 
-  const postData = await getPostData(params.id)  
+  const postData = await getPostData(params.id)
+  const tableOfContent = postData.tableOfContent
   
   return (
     <>
@@ -14,10 +16,13 @@ async function Post({ params } : {params: {id: string}}) {
       description={postData.description}
       heroNumber={getRandomNumber()}
     />
-    <div className="flex m-0">
-        <article className="flex prose lg:prose-xl mx-auto">
-          <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
-        </article>
+    <div className="grid grid-cols-8"> {/* Add justify-center class */}
+      <article className="prose grid col-start-3 col-end-7 lg:prose-xl mx-auto">
+        <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
+      </article>
+      <TableOfContent
+        contents={tableOfContent}
+      />
     </div>
     </>
   )

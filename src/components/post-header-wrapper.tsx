@@ -33,7 +33,7 @@ function PostHeaderWrapper({ title, description, heroNumber=1 }: {
                 description={description}
             />
             <div className={cn(
-                `flex relative self-end`,
+                `flex self-end`,
                 (
                     scrolled ? `hidden` : ``
                 )

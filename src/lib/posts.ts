@@ -24,12 +24,14 @@ export async function getPostData(id) {
 
     contentHtml = splitedContent.slice(1).join('\n');
   
+    const tableOfContent = getTableOfContent(contentHtml);
     // Combine the data with the id and contentHtml
     return {
       id: decodedId,
       contentHtml,
       title,
       description,
+      tableOfContent,
       ...matterResult.data,
     };
 }
@@ -43,4 +45,37 @@ export function getAllPostIds() {
             }
         }
     })
+}
+
+// export function getTableOfContent(contentHtml: string): string[] | null {
+//     const headings = contentHtml.match(/<h[1-6]>(.*?)<\/h[1-6]>/g);
+//     if (!headings) return null;
+//     const extractedHeadings = headings?.map(heading => heading.replace(/<\/?[^>]+(>|$)/g, ''));
+//     console.log(extractedHeadings);
+    
+//     return extractedHeadings;
+// }
+
+function getTableOfContent(contentHtml: string): { level: number, text: string }[] {
+    const headings = contentHtml.match(/<h[1-6]>(.*?)<\/h[1-6]>/g);
+    if (!headings) return [];
+
+    const levels = headings.map((heading) => parseInt(heading.charAt(2)));
+    const isSameLevel = levels.every((level) => level === levels[0]);
+
+    let result = headings.map((heading, index) => {
+        let level = parseInt(heading.charAt(2));
+        const text = heading.replace(/<\/?[^>]+(>|$)/g, '');
+
+        if (isSameLevel) {
+            level = 1
+        }
+        
+        return { 
+            level, 
+            text 
+        };
+    });
+
+    return result;
 }

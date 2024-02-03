@@ -1,11 +1,10 @@
+import { getAllPostIds, getPostData } from "@/lib/posts";
+import Link from "next/link";
 
 
-function PostsPage() {
-    const articles = [
-        { id: 1, title: 'Article 1', content: 'This is the content of Article 1' },
-        { id: 2, title: 'Article 2', content: 'This is the content of Article 2' },
-        { id: 3, title: 'Article 3', content: 'This is the content of Article 3' },
-    ];
+async function PostsPage() {
+    const allPostIds = getAllPostIds();
+    const allPostsData = await Promise.all(allPostIds.map((postId) => getPostData(postId.params.id)));
 
     return (
         <>
@@ -17,11 +16,15 @@ function PostsPage() {
                 <div className="flex flex-col self-center w-[60%]"> 
                     <div className="border-b-2 border-black" />
                     <div className="flex flex-col mt-10">
-                        {articles.map((article) => (
+                        {allPostsData.map((article) => (
                             <div key={article.id} className="flex flex-col border p-4 mb-4">
-                                <span className="font-thin text-sm">published at 2023.07.01</span>
-                                <a href="" className="text-2xl font-bold">{article.title}</a>
-                                <p>{article.content}</p>
+                                <span className="flex justify-end font-thin text-sm text-gray-400 mb-2">published at 2023.07.01</span>
+                                <Link href={`/posts/code/${article.id}`}>
+                                <>
+                                <h1 className="text-2xl font-bold mb-2">{article.title}</h1>
+                                <p className="leading-8">{article.description}</p>
+                                </>
+                                </Link>
                             </div>
                         ))}
                     </div>

@@ -16,11 +16,11 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         title: "Posts",
         icon: <Icon icon="mdi:post-it-note-text-outline" width="24" height="24"/>,
         path: "/posts",
-        submenu: true,
-        subMenuItems: [
-            { icon: <Icon icon="codicon:vscode" width="24" height="24"/>, path: "/posts/code" },
-            { icon: <Icon icon="material-symbols-light:auto-awesome-mosaic" width="24" height="24"/>, path: "/posts/other" },
-        ]
+        // submenu: true,
+        // subMenuItems: [
+        //     { icon: <Icon icon="codicon:vscode" width="24" height="24"/>, path: "/posts/code" },
+        //     { icon: <Icon icon="material-symbols-light:auto-awesome-mosaic" width="24" height="24"/>, path: "/posts/other" },
+        // ]
     },
     {
         title: "Contact",
