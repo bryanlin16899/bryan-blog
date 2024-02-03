@@ -20,9 +20,11 @@ async function Post({ params } : {params: {id: string}}) {
       <article className="prose grid col-start-3 col-end-7 lg:prose-xl mx-auto">
         <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
       </article>
-      <TableOfContent
-        contents={tableOfContent}
-      />
+      <div className="hidden md:flex mt-12 col-start-7 col-end-9 prose">
+        <TableOfContent
+          contents={tableOfContent}
+        />
+      </div>
     </div>
     </>
   )
