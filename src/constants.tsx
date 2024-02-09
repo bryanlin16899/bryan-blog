@@ -7,11 +7,11 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         icon: <Icon icon="carbon:home" width="24" height="24"/>,
         path: "/",
     },
-    {
-        title: "Profolio",
-        icon: <Icon icon="carbon:user-avatar" width="24" height="24"/>,
-        path: "/profolio",
-    },
+    // {
+    //     title: "Profolio",
+    //     icon: <Icon icon="carbon:user-avatar" width="24" height="24"/>,
+    //     path: "/profolio",
+    // },
     {
         title: "Posts",
         icon: <Icon icon="mdi:post-it-note-text-outline" width="24" height="24"/>,
@@ -22,12 +22,25 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         //     { icon: <Icon icon="material-symbols-light:auto-awesome-mosaic" width="24" height="24"/>, path: "/posts/other" },
         // ]
     },
-    {
-        title: "Contact",
-        icon: <Icon icon="carbon:chat-bot" width="24" height="24"/>,
-        path: "/contact",
-    },
+    // {
+    //     title: "Contact",
+    //     icon: <Icon icon="carbon:chat-bot" width="24" height="24"/>,
+    //     path: "/contact",
+    // },
 ];
+
+export const SOCIAL_LINKS: SideNavItem[] = [
+    {
+        title: "Github",
+        icon: <Icon icon="akar-icons:github-fill" width="24" height="24" />,
+        path: "https://github.com/bryanlin16899",
+    },
+    {
+        title: "LinkedIn",
+        icon: <Icon icon="akar-icons:linkedin-fill" width="24" height="24" />,
+        path: "https://www.linkedin.com/in/bryan-lin-taiwan/",
+    }
+]
 
 // export const ALL_PSOTS = [
 //     {

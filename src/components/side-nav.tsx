@@ -5,27 +5,38 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { SIDENAV_ITEMS } from '@/constants';
+import { SIDENAV_ITEMS, SOCIAL_LINKS } from '@/constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 const SideNav = () => {
   return (
-    <div className="md:w-16 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex">
+    <div className="md:w-16 bg-white h-screen flex-1 flex-col justify-between fixed border-r border-zinc-200 hidden md:flex">
       <div className="flex flex-col space-y-6 w-full">
-        <Link
-          href="/"
-          className="flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full"
-        >
-          {/* <span className="h-7 w-10 bg-zinc-300 rounded-lg" /> */}
-          <span className="font-bold text-xl hidden md:flex">B</span>
-        </Link>
+        <div className="flex flex-col">
+          {/* LOGO */}
+          <Link
+            href="/"
+            className="flex flex-row space-x-3 items-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full"
+          >
+            <span className="font-bold text-xl hidden md:flex">B</span>
+          </Link>
 
-        <div className="flex flex-col space-y-2 ">
-          {SIDENAV_ITEMS.map((item, idx) => {
-            return <MenuItem key={idx} item={item} />;
-          })}
+          {/* MENU */}
+          <div className="flex flex-col space-y-2 px-1 ">
+            {SIDENAV_ITEMS.map((item, idx) => {
+              return <MenuItem key={idx} item={item} />;
+            })}
+
+          </div>
         </div>
+      </div>
+
+      {/* SOCIAL */}
+      <div className="flex flex-row flex-wrap-reverse items-center md:justify-start md:px-1 border-b border-zinc-200 h-12 w-full">
+        {SOCIAL_LINKS.map((item, idx) => {
+          return <MenuItem key={idx} item={item} blank={true} />;
+        })}
       </div>
     </div>
   );
@@ -33,7 +44,7 @@ const SideNav = () => {
 
 export default SideNav;
 
-const MenuItem = ({ item }: { item: SideNavItem }) => {
+const MenuItem = ({ item, blank=false }: { item: SideNavItem, blank?: boolean }) => {
   const pathname = usePathname();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
   const toggleSubMenu = () => {
@@ -80,6 +91,7 @@ const MenuItem = ({ item }: { item: SideNavItem }) => {
       ) : (
         <Link
           href={item.path}
+          target={blank ? '_blank' : '_self'}
           className={`flex flex-row space-x-4 items-center p-4 rounded-lg hover:bg-zinc-100 ${
             item.path === pathname ? 'bg-zinc-100' : ''
           }`}

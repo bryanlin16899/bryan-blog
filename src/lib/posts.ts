@@ -9,6 +9,7 @@ import { visit } from 'unist-util-visit';
 const postsDirectory = '/Users/bryanlin/Code/bryan-blog-profolio/public/posts/'
 export async function getPostData(id) {
     const decodedId = decodeURIComponent(id);
+    
     const fullPath = path.join(postsDirectory, `${decodedId}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
   
@@ -23,7 +24,9 @@ export async function getPostData(id) {
 
     const splitedContent = contentHtml.split('\n');
     const title = decodedId;
-    const description = splitedContent[0].replace('<p>', '').replace('</p>', '');
+
+    const description = shortDescription(splitedContent[0].replace('<p>', '').replace('</p>', ''));
+
     const tableOfContent = await getHeadings(decodedId);
     const allHeading = getAllHeading(contentHtml);
     
@@ -39,10 +42,17 @@ export async function getPostData(id) {
             count += 1;
             splitedContent[index] = text;
         }
+        
+        if (line.includes('Pasted image')) {
+          const fileName = line.match(/\[\[(.*?)\]\]/)?.[1]?.split("|")[0];
+          splitedContent[index] = `<img loading="lazy" src="/posts/images/${fileName}" alt="${fileName}" />`;
+          
+        }
+        
     });
     
     contentHtml = splitedContent.slice(1).join('\n');
-
+    
     return {
       id: decodedId,
       contentHtml,
@@ -54,7 +64,7 @@ export async function getPostData(id) {
 }
 
 export function getAllPostIds() {
-    const fileNames = fs.readdirSync('/Users/bryanlin/Code/bryan-blog-profolio/public/posts');
+    const fileNames = fs.readdirSync(postsDirectory).filter(fileName => fileName.endsWith('.md'));
     return fileNames.map(fileName => {
         return {
             params: {
@@ -141,4 +151,8 @@ export function getAllHeading(contentHtml: string): string[] | null {
     const extractedHeadings = headings?.map(heading => heading.replace(/<\/?[^>]+(>|$)/g, ''));
     
     return extractedHeadings;
+}
+
+function shortDescription(description: string): string {
+    return description.length > 100 ? description.slice(0, 90) + " ...read more" : description;
 }

@@ -23,3 +23,35 @@ body::-webkit-scrollbar {
     margin-left: -45px;
     position: absolute;
 }
+
+.acrostic-head-1 {
+    color: transparent;
+    animation: text_reveal 1.3s ease forwards;
+    animation-delay: 0.4s;
+}
+.acrostic-head-2 {
+    color: transparent;
+    animation: text_reveal 1.3s ease forwards;
+    animation-delay: 0.7s;
+}
+.acrostic-head-3 {
+    color: transparent;
+    animation: text_reveal 1.3s ease forwards;
+    animation-delay: 0.9s;
+}
+.acrostic-head-4 {
+    color: transparent;
+    animation: text_reveal 1.3s ease forwards;
+    animation-delay: 1.1s;
+}
+.acrostic-head-5 {
+    color: transparent;
+    animation: text_reveal 1.3s ease forwards;
+    animation-delay: 1.3s;
+}
+
+@keyframes text_reveal {
+    100% {
+        color: white;
+    }
+}
