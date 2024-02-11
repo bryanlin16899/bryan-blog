@@ -15,6 +15,7 @@ async function Post({ params } : {params: {id: string}}) {
       title={postData.title}
       description={postData.description}
       heroNumber={getRandomNumber()}
+      category={postData.category}
     />
     <div className="relative grid grid-cols-8"> {/* Add justify-center class */}
       <article className="prose grid col-start-3 col-end-7 lg:prose-xl mx-auto">

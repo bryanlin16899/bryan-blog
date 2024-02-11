@@ -40,7 +40,8 @@ export async function getPostData(id) {
     // 分類
     const categoryMatch = splitedContent[1].match(htmlTagRegex('p'));
     let category = categoryMatch ? categoryMatch[1] : '';
-    category = (PostCategory as {[key: string]: string})[category] || 'any';
+    category = (PostCategory as {[key: string]: string})[category] || '';
+    splitedContent[1] = '';
     
     // 簡介
     const descriptionMatch = splitedContent[2].match(htmlTagRegex('p'));
@@ -70,7 +71,6 @@ export async function getPostData(id) {
           splitedContent[index] = `<img loading="lazy" src="/posts/images/${fileName}" alt="${fileName}" />`;
           
         }
-        
     });
     
     contentHtml = splitedContent.slice(1).join('\n');

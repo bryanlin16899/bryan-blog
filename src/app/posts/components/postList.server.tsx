@@ -8,7 +8,7 @@ async function PostList({ category='all' }: { category: string }) {
     <>
     {allPostsData.map((article) => (
         <div key={article.id} className="flex flex-col border p-4 mb-4 h-[170px] overflow-hidden">
-        <Link href={`/posts/${article.id}`}>
+        <Link href={`/posts/all/${article.id}`}>
             <div className="flex justify-between">
                 <h1 className="flex text-2xl font-bold mb-5">{article.title}</h1>
                 <span className="flex font-thin text-sm text-gray-400">published {article.postDateStr}</span>

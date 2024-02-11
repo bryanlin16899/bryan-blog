@@ -15,7 +15,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     {
         title: "Posts",
         icon: <Icon icon="mdi:post-it-note-text-outline" width="24" height="24"/>,
-        path: "/posts",
+        path: "/posts/all",
         // submenu: true,
         // subMenuItems: [
         //     { icon: <Icon icon="codicon:vscode" width="24" height="24"/>, path: "/posts/code" },

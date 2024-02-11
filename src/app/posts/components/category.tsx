@@ -10,11 +10,15 @@ function Category() {
         router.push(`/posts/${category}`);
     };
 
+    const allCategories = ["all", "technical", "notes"];
+    
     return (
-        <div>
-            <button onClick={() => handleCategoryChange("")}>All</button>
-            <button onClick={() => handleCategoryChange("technical")}>Technical</button>
-            <button onClick={() => handleCategoryChange("notes")}>Notes</button>
+        <div className="flex border-b-2 ">
+            {allCategories.map((category) => (
+                <button className="mt-3 p-3 hover:bg-zinc-200 " key={category} onClick={() => handleCategoryChange(category)}>
+                    {category.toUpperCase()}
+                </button>
+            ))}
         </div>
     );
 }

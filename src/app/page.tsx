@@ -2,7 +2,7 @@ import { getAllPostsData } from "@/lib/posts";
 import Link from "next/link";
 
 export default async function Home() {
-  const allPostsData = await getAllPostsData(5);
+  const allPostsData = await getAllPostsData('all', 5);
   
   return (
     <>

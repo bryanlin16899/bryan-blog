@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils"
 import { SVGProps } from "react"
 import PostTitle from "./post-title"
 
-function PostHeaderWrapper({ title, description, heroNumber=1 }: {
+function PostHeaderWrapper({ title, description, heroNumber=1, category }: {
     title: string,
     description: string,
-    heroNumber: number
+    heroNumber: number,
+    category: string
 }) {
     const scrolled = useScroll(100)
     return (
@@ -31,6 +32,7 @@ function PostHeaderWrapper({ title, description, heroNumber=1 }: {
             <PostTitle 
                 title={title}
                 description={description}
+                category={category}
             />
             <div className={cn(
                 `flex self-end`,
