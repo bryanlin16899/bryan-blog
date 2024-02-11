@@ -23,8 +23,9 @@ function TableOfContent({ contents } : {contents: any}) {
 export default TableOfContent
 
 const TOCLink = ({ node } : { node: any }) => {
-    const fontSizes = { 2: "base", 3: "sm", 4: "xs" };
+    const fontSizes: { [key: number]: string } = { 2: "base", 3: "sm", 4: "xs" };
     const id = node.data.hProperties.id;
+    
     return (
         <a
         href={`#${id}`}
@@ -32,8 +33,10 @@ const TOCLink = ({ node } : { node: any }) => {
         onClick={(e) => {
             e.preventDefault();
             document
-            .getElementById(id)
-            .scrollIntoView({ behavior: "smooth", block: "start" });
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
         }}
         >
         {node.value}

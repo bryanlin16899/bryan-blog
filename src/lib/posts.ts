@@ -11,7 +11,7 @@ const PostCategory = {
   '[[notes]]': 'notes',
   '[[technical]]': 'technical',
 }
-export async function getPostData(id) {
+export async function getPostData(id: string) {
     const decodedId = decodeURIComponent(id);
     
     const fullPath = path.join(postsDirectory, `${decodedId}.md`);
@@ -47,6 +47,7 @@ export async function getPostData(id) {
     const descriptionMatch = splitedContent[2].match(htmlTagRegex('p'));
     const description = descriptionMatch ? descriptionMatch[1] : '';
     const shortedDescription = shortDescription(description);
+    splitedContent[2] = '';
 
     // 取得table of content
     const tableOfContent = await getHeadings(decodedId);
@@ -54,16 +55,17 @@ export async function getPostData(id) {
     
     // 幫每個標題加上id，用於table of content的跳轉功能
     const allHeading = getAllHeading(contentHtml);
+    
     let count = 0;
     splitedContent.forEach((line, index) => {
         if (line[0] === '<' && line[1] === 'h') {
-            
-            const tag = line.slice(0, 4);
-            const splited = line.split(tag);
-            const text = `${tag.slice(0,3)} id=${allHeading[count]}>` + splited[1];
-            
-            count += 1;
-            splitedContent[index] = text;
+          const tag = line.slice(0, 4);
+          const splited = line.split(tag);
+          const text = `${tag.slice(0,3)} id="${allHeading?.[count]?.toLocaleLowerCase()?.replaceAll(' ','-')}">` + splited[1];
+          console.log(text,'text');
+          
+          count += 1;
+          splitedContent[index] = text;
         }
         
         if (line.includes('Pasted image')) {

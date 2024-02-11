@@ -2,7 +2,7 @@ import { getAllPostsData } from "@/lib/posts";
 import Link from "next/link";
 
 export default async function Home() {
-  const allPostsData = await getAllPostsData('all', 5);
+  const allPostsData = await getAllPostsData('all', 3);
   
   return (
     <>
@@ -22,12 +22,12 @@ export default async function Home() {
           <div className="text-white text-2xl mt-4 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-2">R</span>esolute motivation</div>
           <div className="text-white text-2xl mt-4 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-3">Y</span>earning learner</div>
           <div className="text-white text-2xl mt-4 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-4">A</span>uthentic truth-seeker</div>
-          <div className="text-white text-2xl mt-4 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-5">N</span>ature's companion</div>
+          <div className="text-white text-2xl mt-4 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-5">N</span>ature&apos;s companion</div>
         </div>
       </div>
       <div className="hidden md:flex items-center h-[10%]">
         {allPostsData.map((article, index) => (
-          <div className="text-white mr-20 hover:border-b-2">
+          <div key={index} className="text-white mr-20 hover:border-b-2">
             <Link href={`/posts/code/${article.id}`}>
               <h1>{article.title}</h1>
               <p className="font-thin text-sm text-gray-400">{article.postDateStr}</p>

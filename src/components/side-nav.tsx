@@ -50,7 +50,6 @@ const MenuItem = ({ item, blank=false }: { item: SideNavItem, blank?: boolean })
   const toggleSubMenu = () => {
     setSubMenuOpen(!subMenuOpen);
   };
-  console.log(item.path, pathname);
   
   return (
     <div>

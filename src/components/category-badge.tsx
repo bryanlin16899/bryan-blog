@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
 function CategoryBadge({name}: {name: string}){
-  const categoryColors = {
+  const categoryColors: {[key: string]: string} = {
     'technical': 'bg-blue-500',
     'notes': 'bg-yellow-500',
     '': 'bg-gray-500',
   }
 
-  const categoryName = {
+  const categoryName: {[key: string]: string} = {
     'technical': '技術',
     'notes': '筆記',
     '': '其他',
