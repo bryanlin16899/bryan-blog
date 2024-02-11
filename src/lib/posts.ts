@@ -62,7 +62,6 @@ export async function getPostData(id: string) {
           const tag = line.slice(0, 4);
           const splited = line.split(tag);
           const text = `${tag.slice(0,3)} id="${allHeading?.[count]?.toLocaleLowerCase()?.replaceAll(' ','-')}">` + splited[1];
-          console.log(text,'text');
           
           count += 1;
           splitedContent[index] = text;

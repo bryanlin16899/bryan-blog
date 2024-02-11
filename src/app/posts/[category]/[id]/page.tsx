@@ -17,7 +17,7 @@ async function Post({ params } : {params: {id: string}}) {
       category={postData.category}
     />
     <div className="relative grid grid-cols-8"> {/* Add justify-center class */}
-      <article className="prose grid col-start-3 col-end-7 lg:prose-xl mx-auto">
+      <article className="prose grid col-start-1 col-end-9 p-3  md:col-start-3 md:col-end-7  lg:prose-xl mx-auto">
         <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
       </article>
       <div className="sticky top-3 left-3 h-2 mt-12 col-start-7 col-end-9 prose hidden lg:block">

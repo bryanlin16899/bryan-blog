@@ -30,7 +30,7 @@ const sidebar = {
 
 const variants = {
   open: {
-    transition: { staggerChildren: 0.02, delayChildren: 0.15 },
+    transition: { staggerChildren: 0.01, delayChildren: 0.15 },
   },
   closed: {
     transition: { staggerChildren: 0.01, staggerDirection: -1 },
@@ -47,13 +47,13 @@ function HeaderMobile() {
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${
+      className={`fixed inset-0 z-50 w-full h-[20%] md:hidden ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}
     >
       <motion.div 
-        className="absolute inset-0 right-0 w-full bg-white"
+        className="absolute inset-0 right-0 w-full rounded-b-3xl bg-white"
         variants={sidebar}
       />
 
