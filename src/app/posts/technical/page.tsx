@@ -1,12 +1,11 @@
 import PostList from '@/app/posts/components/postList.server';
-import PostsPage from './components/post-page';
-import './styles.css';
+import PostsPage from '../components/post-page';
 
 function Page() {
     return (
         <>
         <PostsPage>
-            <PostList category='all' />
+            <PostList category='technical' />
         </PostsPage>
         </>
     );

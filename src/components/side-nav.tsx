@@ -50,9 +50,10 @@ const MenuItem = ({ item, blank=false }: { item: SideNavItem, blank?: boolean })
   const toggleSubMenu = () => {
     setSubMenuOpen(!subMenuOpen);
   };
-
+  console.log(item.path, pathname);
+  
   return (
-    <div className="">
+    <div>
       {item.submenu ? (
         <>
           <button
@@ -92,7 +93,7 @@ const MenuItem = ({ item, blank=false }: { item: SideNavItem, blank?: boolean })
         <Link
           href={item.path}
           target={blank ? '_blank' : '_self'}
-          className={`flex flex-row space-x-4 items-center p-4 rounded-lg hover:bg-zinc-100 ${
+          className={`flex flex-row space-x-4 items-center p-4 rounded-lg hover:bg-zinc-100 mt-1 ${
             item.path === pathname ? 'bg-zinc-100' : ''
           }`}
         >

@@ -1,3 +1,7 @@
+*2023.12.11*
+
+[[technical]]
+
 此篇講解如何在 GCP 建立 VPC 及使用 CloudNAT，這裡以 GKE 做為 server 端
 - 建VPC
 - 建Cloud Router

@@ -7,6 +7,10 @@ import html from 'remark-html';
 import { visit } from 'unist-util-visit';
 
 const postsDirectory = '/Users/bryanlin/Code/bryan-blog-profolio/public/posts/'
+const PostCategory = {
+  '[[notes]]': 'notes',
+  '[[technical]]': 'technical',
+}
 export async function getPostData(id) {
     const decodedId = decodeURIComponent(id);
     
@@ -25,12 +29,30 @@ export async function getPostData(id) {
     const splitedContent = contentHtml.split('\n');
     const title = decodedId;
 
-    const description = shortDescription(splitedContent[0].replace('<p>', '').replace('</p>', ''));
+    // 貼文日期
+    const postDateText = splitedContent[0];
+    const postDateRegex = htmlTagRegex('em');
+    const match = postDateText.match(postDateRegex);
+    const dateText = match ? match[1] : '';
+    const postDate = new Date(dateText);
+    const postDateStr = formatPostDate(postDate);
+    
+    // 分類
+    const categoryMatch = splitedContent[1].match(htmlTagRegex('p'));
+    let category = categoryMatch ? categoryMatch[1] : '';
+    category = (PostCategory as {[key: string]: string})[category] || 'any';
+    
+    // 簡介
+    const descriptionMatch = splitedContent[2].match(htmlTagRegex('p'));
+    const description = descriptionMatch ? descriptionMatch[1] : '';
+    const shortedDescription = shortDescription(description);
 
+    // 取得table of content
     const tableOfContent = await getHeadings(decodedId);
-    const allHeading = getAllHeading(contentHtml);
+
     
     // 幫每個標題加上id，用於table of content的跳轉功能
+    const allHeading = getAllHeading(contentHtml);
     let count = 0;
     splitedContent.forEach((line, index) => {
         if (line[0] === '<' && line[1] === 'h') {
@@ -58,9 +80,28 @@ export async function getPostData(id) {
       contentHtml,
       title,
       description,
+      shortedDescription,
       tableOfContent,
+      postDateStr,
+      postDate,
+      category,
       ...matterResult.data,
     };
+}
+
+export async function getAllPostsData(category: string = 'all', limit: number|null = null) {
+  const allPostIds = getAllPostIds();
+  const allPostsData = await Promise.all(allPostIds.map(postId => {
+    return getPostData(postId.params.id);
+  }));
+  allPostsData.sort((a, b) => b.postDate.getTime() - a.postDate.getTime());
+  if (limit) {
+    return allPostsData.slice(0, limit);
+  }
+  if (category != 'all') {
+    return allPostsData.filter(post => post.category === category);
+  }
+  return allPostsData;
 }
 
 export function getAllPostIds() {
@@ -155,4 +196,28 @@ export function getAllHeading(contentHtml: string): string[] | null {
 
 function shortDescription(description: string): string {
     return description.length > 100 ? description.slice(0, 90) + " ...read more" : description;
+}
+
+function formatPostDate(date: Date): string {
+  const now = new Date();
+  const diffInMilliseconds = now.getTime() - date.getTime();
+  const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+  const diffInWeeks = Math.floor(diffInDays / 7);
+  const diffInMonths = Math.floor(diffInDays / 30);
+  const diffInYears = Math.floor(diffInDays / 365);
+
+  if (diffInDays <= 7) {
+    return `${diffInDays === 1 ? '1 day' : diffInDays + ' days'} ago`;
+  } else if (diffInWeeks <= 4) {
+    return `${diffInWeeks === 1 ? '1 week' : diffInWeeks + ' weeks'} ago`;
+  } else if (diffInMonths <= 12) {
+    return `${diffInMonths === 1 ? '1 month' : diffInMonths + ' months'} ago`;
+  } else {
+    const remainingMonths = diffInMonths % 12;
+    return `${diffInYears === 1 ? '1 year' : diffInYears + ' years'} ${remainingMonths === 1 ? '1 month' : remainingMonths + ' months'} ago`;
+  }
+}
+
+function htmlTagRegex(tag: string): RegExp {
+  return new RegExp(`<${tag}>(.*?)<\/${tag}>`);
 }

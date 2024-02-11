@@ -1,3 +1,7 @@
+*2023.03.02*
+
+[[technical]]
+
 介紹AWS lambda與使用方法
 
 ## AWS Lambda
