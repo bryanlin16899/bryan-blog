@@ -50,5 +50,14 @@
 }
 
 pre {
-    width: 1vw - 10px;
-}    
+    max-width: 700px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    pre {
+        max-width: 380px;
+        overflow: hidden;
+    }    
+    
+}

@@ -30,9 +30,7 @@ Notice that region must be same with you VPC subnet.
 All set! you can run a ubuntu pod to check external IP is same with cloud nat IP
 1. Create a pod that run with ubuntu system
 ```shell
-$ kubectl apply -f https://gist.githubusercontent.com/tcdowney/b8a029
-7241b74f94ef1fc6627f7ea69a/raw/eaae035f5adca37ca00d4a49f1c1958fe3db8
-9e3/ubuntu-sleep.yaml
+$ kubectl apply -f https://gist.githubusercontent.com/tcdowney/b8a0297241b74f94ef1fc6627f7ea69a/raw/eaae035f5adca37ca00d4a49f1c1958fe3db89e3/ubuntu-sleep.yaml
 ```
 2. Enter into pod's shell
 ```shell
