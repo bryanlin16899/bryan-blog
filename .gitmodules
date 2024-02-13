@@ -1,0 +1,3 @@
+[submodule "public/BlogVault"]
+	path = public/BlogVault
+	url = https://github.com/bryanlin16899/blogmd.git

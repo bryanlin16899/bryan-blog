@@ -6,7 +6,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { visit } from 'unist-util-visit';
 
-const postsDirectory = path.join(process.cwd(), 'public', 'posts');
+const postsDirectory = path.join(process.cwd(), 'public', 'BlogVault');
 const PostCategory = {
   '[[notes]]': 'notes',
   '[[technical]]': 'technical',
@@ -69,7 +69,7 @@ export async function getPostData(id: string) {
         
         if (line.includes('Pasted image')) {
           const fileName = line.match(/\[\[(.*?)\]\]/)?.[1]?.split("|")[0];
-          splitedContent[index] = `<img loading="lazy" src="/posts/images/${fileName}" alt="${fileName}" />`;
+          splitedContent[index] = `<img loading="lazy" src="/BlogVault/images/${fileName}" alt="${fileName}" />`;
           
         }
     });

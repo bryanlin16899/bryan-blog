@@ -4,7 +4,7 @@ import { HERO_BLUR_BASE64 } from "@/constants"
 import useScroll from "@/hooks/use-scroll"
 import { cn } from "@/lib/utils"
 import Image from "next/legacy/image"
-import { SVGProps, useEffect } from "react"
+import { SVGProps } from "react"
 import PostTitle from "./post-title"
 
 function PostHeaderWrapper({ title, description, heroNumber=1, category }: {
@@ -14,19 +14,18 @@ function PostHeaderWrapper({ title, description, heroNumber=1, category }: {
     category: string
 }) {
     const scrolled = useScroll(100)
-    // const [base64, setBase64] = useState("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAIAAADwyuo0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAI0lEQVR4nGO49P//zJv/Oy/+b9r3ioGBRYKBT15K24JZUAYAxSUKu0DQsr0AAAAASUVORK5CYII=")
     const base64 = HERO_BLUR_BASE64[`/hero/image${heroNumber}.jpg` as keyof typeof HERO_BLUR_BASE64]
 
-    useEffect(() => {
-        (async () => {
-            const _base64 = await fetch('/api/getBase64', {
-                method: 'POST',
-                body: JSON.stringify({ url: `/hero/image13.jpg` })
-            });
-            const bsee64 = await _base64.json()
-            // setBase64(bsee64.base64);
-        })()
-    })
+    // useEffect(() => {
+    //     (async () => {
+    //         const _base64 = await fetch('/api/getBase64', {
+    //             method: 'POST',
+    //             body: JSON.stringify({ url: `/hero/image13.jpg` })
+    //         });
+    //         const bsee64 = await _base64.json()
+    //         // setBase64(bsee64.base64);
+    //     })()
+    // })
        
     return (
         <div

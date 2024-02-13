@@ -27,11 +27,11 @@ export default async function Home() {
       </div>
       <div className="hidden md:flex items-center h-[10%]">
         {allPostsData.map((article, index) => (
-          <div key={index} className="text-white mr-20 hover:border-b-2">
+          <div key={index} className="flex flex-col justify-between text-white max-w-[280px] min-h-[70px] text-pretty mr-20 hover:border-b-2">
             <Link href={`/posts/code/${article.id}`}>
               <h1>{article.title}</h1>
-              <p className="font-thin text-sm text-gray-400">{article.postDateStr}</p>
             </Link>
+            <p className="font-thin text-sm text-gray-400">{article.postDateStr}</p>
           </div>
         ))}
       </div>
