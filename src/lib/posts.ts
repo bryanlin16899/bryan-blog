@@ -3,6 +3,7 @@ import matter from 'gray-matter';
 import { toString } from 'mdast-util-to-string';
 import path from 'path';
 import { remark } from 'remark';
+import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 import { visit } from 'unist-util-visit';
 
@@ -22,6 +23,7 @@ export async function getPostData(id: string) {
   
     // Use remark to convert markdown into HTML string
     const processedContent = await remark()
+      .use(remarkGfm)
       .use(html)
       .process(matterResult.content);
     let contentHtml = processedContent.toString();
