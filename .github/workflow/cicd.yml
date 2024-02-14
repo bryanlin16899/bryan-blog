@@ -1,0 +1,64 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t my_blog .
+
+      - name: Authenticate AWS ECR
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region ${{ secrets.AWS_REGION }}
+          aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
+
+      - name: Tag Docker image
+        run: docker tag my_blog 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+
+      - name: Push Docker image to ECR
+        run: docker push 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+
+      - name: Connect to EC2 instance using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+
+      - name: Authenticate ECR in EC2 instance
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region ${{ secrets.AWS_REGION }}
+          aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
+
+      - name: Pull new Docker image in EC2 instance
+        run: docker pull 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+
+      - name: Replace old Docker image in EC2 instance
+        run: docker stop my_blog && docker rm my_blog && docker run -d --name my_blog -p 3000:3000 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+
+      - name: Prune unused Docker images
+        run: docker image prune -f
+
+
+# write a github action yml, contain following steps
+# 1. build docker image, use root folder dockerfile, image name is my_blog
+# 2. auth aws ecr. (region, username, password are in action secrets)
+# 3. tag image as "427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest"
+# 4. push image to ecr
+# 5. connect ec2 shell use ssh
+# 6. auth ecr in ec2
+# 7. pull new image and replace old one
+# 8. prune unused image
