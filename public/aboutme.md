@@ -13,4 +13,12 @@ Here, I will documenting what I learn and everything I want to summarize (books,
 
 # Why did I build this?
 ---
-A couple years ago, When I was an EE student, I read a lot of personal blog that built by talented individuals(I will share some of the blogs I love at the bottom of this page, by the way). They share thier perspectives, which were too long to put on the social media (like IG), I learned that this is valuable way to convey what I think and learn because there are people who don't want to see a long page of someone's views on something on social media.
+A couple years ago, When I was an EE student, I read a lot of personal blog that built by talented individuals(I will share some of the blogs I love at the bottom of this page, by the way). They share thier perspectives, which were too long to put on the social media (like IG)🥺, I learned that this is valuable way to convey what I think and learn because there are people who don't want to see a long page of someone's views on something on social media. So, I built this website to store my history of thoughts and hope my posts can help someone who struggles with things that I have encountered before, just like I was helped by other blogs I read 🎉🎉.
+
+# Blogs I love
+---
+[Lil'Log](https://lilianweng.github.io/) - Lilian (AI safety leader at OpenAI)
+[sheracaolity](https://sheracaolity.ghost.io/golden-kitty/) - 陳雨安 (Heptabase Founder)
+[Brian Lovin](https://brianlovin.com/) - Brian (Designer, podcaster, writer)
+[Paul Graham](https://www.paulgraham.com/index.html) - Paul Graham (Y Combinator Founder)
+[The Wine Guy](https://blog.jameshsu.csie.org/) - James Hsu (Software engineer at ByteDance)
