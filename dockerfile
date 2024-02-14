@@ -8,7 +8,9 @@ WORKDIR /app
 COPY . .
 
 # Install project dependencies
-RUN npm install && \
+RUN apt update && \
+    apt install git -y && \
+    npm install && \
     npm run build
 
 # Expose the port on which your application listens
