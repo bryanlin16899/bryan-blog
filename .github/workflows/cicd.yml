@@ -41,24 +41,34 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            sudo su
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure set default.region ${{ secrets.AWS_REGION }}
+            aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
+            docker stop my_blog || true && docker rm my_blog || true
+            docker image prune -f
+            docker pull 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+            docker run -d --name my_blog -p 3000:3000 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
 
-      - name: Authenticate ECR in EC2 instance
-        run: |
-          sudo su
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region ${{ secrets.AWS_REGION }}
-          aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
+      # - name: Authenticate ECR in EC2 instance
+      #   run: |
+      #     sudo su
+      #     aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws configure set default.region ${{ secrets.AWS_REGION }}
+      #     aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
 
-      - name: Replace old Docker image in EC2 instance
-        run: docker stop my_blog || true && docker rm my_blog || true
+      # - name: Replace old Docker image in EC2 instance
+      #   run: docker stop my_blog || true && docker rm my_blog || true
 
-      - name: Prune unused Docker images
-        run: docker image prune -f
+      # - name: Prune unused Docker images
+      #   run: docker image prune -f
         
-      - name: Pull new Docker image in EC2 instance
-        run: docker pull 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+      # - name: Pull new Docker image in EC2 instance
+      #   run: docker pull 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
 
-      - name: Run new Docker image in EC2 instance
-        run: docker run -d --name my_blog -p 3000:3000 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+      # - name: Run new Docker image in EC2 instance
+      #   run: docker run -d --name my_blog -p 3000:3000 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
 
