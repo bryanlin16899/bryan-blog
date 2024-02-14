@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { SIDENAV_ITEMS, SOCIAL_LINKS } from '@/constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { Tooltip } from 'react-tooltip';
 
 const SideNav = () => {
   return (
@@ -91,12 +92,17 @@ const MenuItem = ({ item, blank=false }: { item: SideNavItem, blank?: boolean })
       ) : (
         <Link
           href={item.path}
+          data-tooltip-id='sidebar-tooltip'
+          data-tooltip-content={item.tooltip}
+          data-tooltip-place='right'
+          data-tooltip-offset={-10}
           target={blank ? '_blank' : '_self'}
           className={`flex flex-row space-x-4 items-center p-4 rounded-lg hover:bg-zinc-100 mt-1 ${
             item.path === pathname ? 'bg-zinc-100' : ''
           }`}
         >
           {item.icon}
+          <Tooltip id="sidebar-tooltip" />
         </Link>
       )}
     </div>

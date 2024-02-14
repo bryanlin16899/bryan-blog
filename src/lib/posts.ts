@@ -3,11 +3,13 @@ import matter from 'gray-matter';
 import { toString } from 'mdast-util-to-string';
 import path from 'path';
 import { remark } from 'remark';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 import { visit } from 'unist-util-visit';
 
 const postsDirectory = path.join(process.cwd(), 'public', 'BlogVault');
+const publicDirectory = path.join(process.cwd(), 'public');
 const PostCategory = {
   '[[notes]]': 'notes',
   '[[technical]]': 'technical',
@@ -223,4 +225,21 @@ function formatPostDate(date: Date): string {
 
 function htmlTagRegex(tag: string): RegExp {
   return new RegExp(`<${tag}>(.*?)<\/${tag}>`);
+}
+
+// About me page markdown to html
+export async function getAboutMeData() {
+  const fullPath = path.join(publicDirectory, 'aboutme.md');
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const matterResult = matter(fileContents);
+  const processedContent = await remark()
+    .use(remarkGfm)
+    .use(remarkBreaks)
+    .use(html)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
+  return {
+    contentHtml,
+    ...matterResult.data,
+  };
 }

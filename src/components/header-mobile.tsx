@@ -15,7 +15,7 @@ const sidebar = {
     transition: {
       type: "spring",
       stiffness: 100,
-      restDelta: 6,
+      restDelta: 4,
     },
   }),
   closed: {
@@ -47,7 +47,7 @@ function HeaderMobile() {
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full h-[20%] md:hidden ${
+      className={`fixed inset-0 z-50 w-full h-[30%] md:hidden ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}
@@ -89,14 +89,14 @@ function HeaderMobile() {
           );
         })}
       </motion.ul>
-      <MenuToggle toggle={toggleOpen} />
+      <MenuToggle toggle={toggleOpen} isOpen={isOpen} />
     </motion.nav>
   )
 }
 
 export default HeaderMobile
 
-const MenuToggle = ({ toggle }: { toggle: any }) => (
+const MenuToggle = ({ toggle, isOpen }: { toggle: any, isOpen: boolean }) => (
   <button
     onClick={toggle}
     className="pointer-events-auto absolute right-4 top-[14px] z-30"
@@ -107,7 +107,7 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
           closed: { d: 'M 2 2.5 L 20 2.5' },
           open: { d: 'M 3 16.5 L 17 2.5' },
         }}
-        stroke="black"
+        stroke={isOpen ? "black" : "lightgray"}
       />
       <Path
         d="M 2 9.423 L 20 9.423"
@@ -116,14 +116,14 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
           open: { opacity: 0 },
         }}
         transition={{ duration: 0.1 }}
-        stroke="black"
+        stroke={isOpen ? "black" : "lightgray"}
       />
       <Path
         variants={{
           closed: { d: 'M 2 16.346 L 20 16.346' },
           open: { d: 'M 3 2.5 L 17 16.346' },
         }}
-        stroke="black"
+        stroke={isOpen ? "black" : "lightgray"}
       />
     </svg>
   </button>

@@ -6,6 +6,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         title: "Home",
         icon: <Icon icon="carbon:home" width="24" height="24"/>,
         path: "/",
+        tooltip: "首頁",
     },
     // {
     //     title: "Profolio",
@@ -16,17 +17,19 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         title: "Posts",
         icon: <Icon icon="mdi:post-it-note-text-outline" width="24" height="24"/>,
         path: "/posts/all",
+        tooltip: "文章",
         // submenu: true,
         // subMenuItems: [
         //     { icon: <Icon icon="codicon:vscode" width="24" height="24"/>, path: "/posts/code" },
         //     { icon: <Icon icon="material-symbols-light:auto-awesome-mosaic" width="24" height="24"/>, path: "/posts/other" },
         // ]
     },
-    // {
-    //     title: "Contact",
-    //     icon: <Icon icon="carbon:chat-bot" width="24" height="24"/>,
-    //     path: "/contact",
-    // },
+    {
+        title: "About Me",
+        icon: <Icon icon="carbon:chat-bot" width="24" height="24"/>,
+        path: "/aboutme",
+        tooltip: "關於我",
+    },
 ];
 
 export const SOCIAL_LINKS: SideNavItem[] = [
