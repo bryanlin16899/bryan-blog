@@ -48,6 +48,7 @@ jobs:
             sudo aws configure set default.region ${{ secrets.AWS_REGION }}
             sudo aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com
             sudo docker stop my_blog || true && docker rm my_blog || true
+            sudo docker rm my_blog || true
             sudo docker image prune -f
             sudo docker pull 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
             sudo docker run -d --name my_blog -p 3000:3000 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
