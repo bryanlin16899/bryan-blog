@@ -8,7 +8,7 @@ function PostTitle({title, description, category}: {
   return (
     <div className="flex flex-col mx-auto w-4/5 relative">
         <h1 className="text-6xl font-bold mt-8 text-white font-normal">{title}</h1>
-        <p className="text-2xl font-normal mt-4 mb-2 text-white">
+        <p className="text-2xl font-normal mt-4 mb-2 max-w-[80%] text-white">
        {description}
         </p>
         <CategoryBadge name={category} />
