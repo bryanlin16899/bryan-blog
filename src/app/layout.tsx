@@ -5,6 +5,7 @@ import PageWrapper from "@/components/page-wrapper";
 import SideNav from "@/components/side-nav";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from 'next/script';
 import 'react-tooltip/dist/react-tooltip.css';
 import "./globals.css";
 
@@ -22,6 +23,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* <!-- Google tag (gtag.js) --> */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-V5W0EHTHN3"></Script>
+        <Script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-V5W0EHTHN3');
+          `}
+        </Script>
+      </head>
       <body className={ `bg-white ${inter.className}`}>
         <div className="flex">
           <SideNav />

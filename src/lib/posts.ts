@@ -14,6 +14,7 @@ const PostCategory = {
   '[[notes]]': 'notes',
   '[[technical]]': 'technical',
 }
+const changeImageSize = (size: number) => size/2.5;
 export async function getPostData(id: string) {
     const decodedId = decodeURIComponent(id);
     
@@ -72,8 +73,11 @@ export async function getPostData(id: string) {
         }
         
         if (line.includes('Pasted image')) {
-          const fileName = line.match(/\[\[(.*?)\]\]/)?.[1]?.split("|")[0];
-          splitedContent[index] = `<img loading="lazy" src="/BlogVault/images/${fileName}" alt="${fileName}" />`;
+          const imageSplited = line.match(/\[\[(.*?)\]\]/)?.[1]?.split("|")
+          if (!imageSplited) return;
+          const fileName = imageSplited[0];
+          const size = Number(imageSplited[1])
+          splitedContent[index] = `<img loading="lazy" src="/BlogVault/images/${fileName}" alt="${fileName}" width=${changeImageSize(size)}% />`;
           
         }
     });
