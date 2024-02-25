@@ -47,7 +47,7 @@ function HeaderMobile() {
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full h-[30%] md:hidden ${
+      className={`fixed inset-0 z-50 w-full h-[38%] md:hidden ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}

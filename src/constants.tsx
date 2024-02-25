@@ -30,6 +30,12 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         path: "/aboutme",
         tooltip: "關於我",
     },
+    {
+        title: "Portfolio",
+        icon: <Icon icon="carbon:portfolio" width="24" height="24"/>,
+        path: "/portfolio",
+        tooltip: "經歷"
+    }
 ];
 
 export const SOCIAL_LINKS: SideNavItem[] = [
