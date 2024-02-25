@@ -1,5 +1,7 @@
 'use client'
 
+import Image from "next/image"
+
 function Modal({ closeModal, contentNum, contentType }: { closeModal: any, contentNum: string, contentType: string }) {
     const workContentTemplate = ({ description, responsibilities, experience }: { description: string, responsibilities: string[], experience: string[] }) => {
         return (
@@ -56,7 +58,7 @@ function Modal({ closeModal, contentNum, contentType }: { closeModal: any, conte
                     <>
                     <h3>Introduction</h3>
                     <p>Collaborated with my friend to develop an EPR system tailored for E-commerce purposes. this ERP using a small-scale e-commerce(<a href="https://shopee.tw/sixstar" target="_blank">website</a>) for now.</p>
-                    <img src="/portfolio/touchWhale.png" alt="Touch Whale" />
+                    <Image width={650} height={600} loading="lazy" src="/portfolio/touchWhale.png" alt="Touch Whale" />
                     </>
                 )
             case 'coinLog':
@@ -64,7 +66,7 @@ function Modal({ closeModal, contentNum, contentType }: { closeModal: any, conte
                     <>
                     <h3>Introduction</h3>
                     <p>A website integrate Binance API, Collect my investment infomation (profit, marketcap etc) and trade on specific condition.</p>
-                    <img src="/portfolio/coinLog.png" alt="CoinLog" />
+                    <Image width={650} height={600} loading="lazy" src="/portfolio/coinLog.png" alt="CoinLog" />
                     </>
                 )
         }
