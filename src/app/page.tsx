@@ -1,4 +1,5 @@
 import { getAllPostsData } from "@/lib/posts";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
@@ -9,6 +10,9 @@ export default async function Home() {
     <div
       className="home-hero-image"
     >
+      <div style={{ zIndex: -1, position: 'fixed', width: "100vw", height: "100vh" }}>
+        <Image alt="hero" priority src={'/hero/image12.jpg'} fill quality={100} style={{objectFit:"cover"}}/>
+      </div>
       <div className="flex flex-col justify-center items-center md:h-[90%]">
         <div className="hidden md:flex flex-col border-l-2 ">
           <div className="text-white text-2xl mt-0 ml-1"><span className="font-bold text-6xl mr-1 acrostic-head-1">B</span>oundless curiosity, seeking new horizons</div>

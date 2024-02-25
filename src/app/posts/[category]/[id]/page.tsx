@@ -7,7 +7,6 @@ import './style.css';
 async function Post({ params } : {params: {id: string}}) { 
   const postData = await getPostData(params.id)
   const tableOfContent = postData.tableOfContent
-  console.log(postData.contentHtml);
   
   return (
     <>

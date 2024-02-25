@@ -11,6 +11,7 @@ async function page() {
             alt="Picture of the author"
             width={500}
             height={500}
+            priority={true}
         />
         <div className="flex flex-grow w-[100%] md:w-[60%] mt-6 border-2 border-red-50 prose prose-md p-5">
             <div className="about-me-content" dangerouslySetInnerHTML={{__html: processedContent.contentHtml}}/>

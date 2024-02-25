@@ -31,18 +31,12 @@ function PostHeaderWrapper({ title, description, heroNumber=1, category }: {
         <div
         className="h-screen"
         style={{
-            // backgroundImage: `
-            // linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4)),
-            // url('/hero/image${heroNumber}.jpg')`, // Replace with the path to your image
-            // backgroundSize: 'cover',
-            // backgroundPosition: 'center',
-            // width: '100%',
-            // height: '100vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
-            marginBottom: '10px'
+            marginBottom: '10px',
+            zIndex: -1
         }}
         >
             <div className="absolute w-[100%] h-[100%]">
