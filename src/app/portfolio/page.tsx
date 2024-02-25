@@ -4,7 +4,7 @@ import Modal from './components/modal/modal';
 import Timeline from './components/timeline/timeline';
 import './styles.css';
 
-function page() {
+function Page() {
     const [ openModal, setOpenModal ] = useState({
         open: false,
         contentNum: '',
@@ -102,4 +102,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
