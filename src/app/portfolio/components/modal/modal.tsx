@@ -74,7 +74,7 @@ function Modal({ closeModal, contentNum, contentType }: { closeModal: any, conte
 
   return (
     <div onClick={() => closeModal(false)} className=" w-[100vw] h-[100vh] bg-transparent flex justify-center items-center fixed z-10">
-        <div className="w-1/3 h-5/6 max-h-[750px] max-w-[70ch] overflow-auto bg-white rounded-md flex flex-col p-5" style={{ boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)' }}>
+        <div className="w-3/3 h-5/6 max-h-[750px] max-w-[70ch] overflow-auto bg-white rounded-md flex flex-col p-5 md:w-1/3" style={{ boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)' }}>
             <div className="flex justify-end">
             <button onClick={() => closeModal(false)}>X</button>
             </div>
