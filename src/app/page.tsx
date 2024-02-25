@@ -11,7 +11,10 @@ export default async function Home() {
       className="home-hero-image"
     >
       <div style={{ zIndex: -1, position: 'fixed', width: "100vw", height: "100vh" }}>
-        <Image alt="hero" priority src={'/hero/image12.jpg'} fill quality={100} style={{objectFit:"cover"}}/>
+        <picture>
+          <source srcSet={'/homeHero/image-desktop.jpg'} media="(min-width: 1024px)"/>
+          <Image alt="hero" priority src={'/homeHero/image-mobile.jpg'} fill quality={100} style={{objectFit:"cover"}}/>
+        </picture>
       </div>
       <div className="flex flex-col justify-center items-center md:h-[90%]">
         <div className="hidden md:flex flex-col border-l-2 ">
