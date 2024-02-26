@@ -18,7 +18,7 @@ A couple years ago, When I was an EE student, I read a lot of personal blog that
 # Blogs I love
 ---
 [Lil'Log](https://lilianweng.github.io/) - Lilian (AI safety leader at OpenAI)
-[sheracaolity](https://sheracaolity.ghost.io/golden-kitty/) - 陳雨安 (Heptabase Founder)
+[sheracaolity](https://sheracaolity.ghost.io/golden-kitty/) - 詹雨安 (Heptabase Founder)
 [Brian Lovin](https://brianlovin.com/) - Brian (Designer, podcaster, writer)
 [Paul Graham](https://www.paulgraham.com/index.html) - Paul Graham (Y Combinator Founder)
 [The Wine Guy](https://blog.jameshsu.csie.org/) - James Hsu (Software engineer at ByteDance)
