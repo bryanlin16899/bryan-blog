@@ -1,5 +1,5 @@
 # Use the official Node.js v18.18.0 image as the base image
-FROM node:18.18.0-slim
+FROM --platform=arm64 node:18.18.0-slim
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -17,4 +17,5 @@ RUN apt update && \
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
+ENTRYPOINT [ "npm", "run", "start" ]
