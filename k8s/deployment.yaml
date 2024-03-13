@@ -9,7 +9,8 @@ spec:
   selector:
     app: my-blog
   ports:
-    - port: 3000
+    - port: 80
+      name: http
       protocol: TCP
       targetPort: 3000
 
@@ -31,5 +32,19 @@ spec:
       containers:
         - name: my-blog
           image: 427243519225.dkr.ecr.ap-southeast-2.amazonaws.com/my_blog:latest
+          volumeMounts:
+            - name: my-blog-storage
+              mountPath: /app
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      volumes:
+        - name: my-blog-storage
+          persistentVolumeClaim:
+            claimName: myclaim
