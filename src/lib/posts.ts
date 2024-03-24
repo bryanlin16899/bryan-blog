@@ -78,7 +78,7 @@ export async function getPostData(id: string) {
           if (!imageSplited) return;
           const fileName = imageSplited[0];
           const size = Number(imageSplited[1])
-          splitedContent[index] = `<img loading="lazy" src="/BlogVault/images/${fileName}" alt="${fileName}" width=${changeImageSize(size)}% />`;
+          splitedContent[index] = `<img src="/BlogVault/images/${fileName}" alt="${fileName}" width=${changeImageSize(size)}% />`;
           
         }
     });

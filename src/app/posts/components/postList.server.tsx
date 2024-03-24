@@ -2,8 +2,11 @@
 import { getAllPostsData } from '@/lib/posts';
 import Link from 'next/link';
 
-async function PostList({ category='all' }: { category: string }) {
-    const allPostsData = await getAllPostsData(category)
+async function PostList({ category='all' }: { category: string | string[] | undefined}) {
+  
+  const validCategories = ['all', 'notes', 'technical'];
+  const selectedCategory = typeof category === 'string' && validCategories.includes(category) ? category : 'all';
+  const allPostsData = await getAllPostsData(selectedCategory);
   return (
     <>
     {allPostsData.map((article) => (

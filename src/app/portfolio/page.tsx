@@ -34,7 +34,7 @@ function Page() {
             }
         },
         {
-            text: 'Personal Blog Deplyed',
+            text: 'Personal Blog Deployed',
             date: 'January 2023',
             category: categories.goal,
             // link: {

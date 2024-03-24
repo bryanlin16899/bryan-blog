@@ -27,9 +27,9 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
-    "@pulumi/pulumi": "^3.0.0",
     "@pulumi/aws": "^6.0.0",
     "@pulumi/awsx": "^2.0.2",
+    "@pulumi/pulumi": "^3.0.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18",

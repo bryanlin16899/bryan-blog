@@ -7,7 +7,7 @@ function Category() {
     const router = useRouter();
 
     const handleCategoryChange = (category: string) => {
-        router.push(`/posts/${category}`);
+        router.push(`/posts?category=${category}`);
     };
 
     const allCategories = ["all", "technical", "notes"];
